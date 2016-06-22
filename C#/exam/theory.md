@@ -6,7 +6,7 @@
 
 1. :neckbeard: [История развития языка C#](http://github.com) :feelsgood:
 
-  - [ ] :point_right: Достоинства.
+  - [x] :point_right: Достоинства.
   - [ ] :point_right: Лексемы.
   - [ ] :point_right: Алфавит и словарь языка.
   - [ ] :point_right: Константы и переменные.
