@@ -11,8 +11,6 @@
 - NIGHTMARE === :feelsgood:
 - INSANE === :finnadie:
 
---------------------------------------------------------------------------------
-
 ## :collision: Вопросы :collision:
 
 1. :neckbeard: [История развития языка C#](http://github.com) :feelsgood:
