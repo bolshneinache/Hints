@@ -2,8 +2,6 @@
 
 ![Programming Language](https://udemy-images.udemy.com/course/750x422/658604_d6b0_3.jpg)
 
---------------------------------------------------------------------------------
-
 ## Градация сложности:
 
 - I'm too young to DIE === :godmode:
