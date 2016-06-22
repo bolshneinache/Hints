@@ -6,18 +6,28 @@
 
 1. :neckbeard: [История развития языка C#](http://github.com) :feelsgood:
 
-  - [x] :point_right: Достоинства.
-  - [ ] :point_right: Лексемы.
-  - [ ] :point_right: Алфавит и словарь языка.
-  - [ ] :point_right: Константы и переменные.
-  - [ ] :point_right: Объявление и инициализация.
-  - [ ] :point_right: Классификация типов данных.
+  - :point_right: Достоинства.
+  - :point_right: Лексемы.
+  - :point_right: Алфавит и словарь языка.
+  - :point_right: Константы и переменные.
+  - :point_right: Объявление и инициализация.
+  - :point_right: Классификация типов данных.
 
 2. :neckbeard: [Структура программы](http://github.com) :feelsgood:
 
-  - [ ] :point_right: Достоинства.
-  - [ ] :point_right: Лексемы.
-  - [ ] :point_right: Алфавит и словарь языка.
-  - [ ] :point_right: Константы и переменные.
-  - [ ] :point_right: Объявление и инициализация.
-  - [ ] :point_right: Классификация типов данных.
+  - :point_right: Достоинства.
+  - :point_right: Лексемы.
+  - :point_right: Алфавит и словарь языка.
+  - :point_right: Константы и переменные.
+  - :point_right: Объявление и инициализация.
+  - :point_right: Классификация типов данных.
+
+2
+
+- [ ] a task list item
+
+- [ ] list syntax required
+
+- [ ] normal **formatting**, @mentions, #1234 refs
+- [ ] incomplete
+- [x] completed
