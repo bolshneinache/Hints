@@ -1,7 +1,5 @@
 # FAQ Programming
 
---------------------------------------------------------------------------------
-
 ![Programming Language](http://courses.prometheus.org.ua/c4x/Microsoft/CS201/asset/88750_c444_7.jpg)
 
 ## :collision: Вопросы :collision:
