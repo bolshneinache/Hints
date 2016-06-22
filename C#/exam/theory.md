@@ -1,6 +1,6 @@
 # FAQ Programming
 
-![Programming Language](http://courses.prometheus.org.ua/c4x/Microsoft/CS201/asset/88750_c444_7.jpg)
+![Programming Language](https://udemy-images.udemy.com/course/750x422/658604_d6b0_3.jpg)
 
 ## :collision: Вопросы :collision:
 
