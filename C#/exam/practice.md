@@ -118,7 +118,7 @@
 
   Console.ReadKey();
   ```
-
+<script src="https://gist.github.com/Egorvoz/97e361bac0a049df41d0e164d9d96149.js"></script>
 - 2 Part
 
 ### Task #13
