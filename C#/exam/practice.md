@@ -26,7 +26,7 @@
 9. :finnadie: Empty - BolsheNeInache Part of Work!!!:finnadie:
 10. :finnadie: Empty - BolsheNeInache Part of Work!!!:finnadie:
 
-11. :neckbeard: [Task #11](http://github.com) :goberserk:
+11. :neckbeard: [Task #11](https://github.com/Egorvoz/Hints/blob/master/C%23/exam/practice.md#task-11) :goberserk:
 
   - Ввести с клавиатуры натуральное число N. Определить сумму цифр во второй половине числа (младшие разряды). Пример. N = 12 345 678\. Сумма составляет 5 + 6 + 7 + 8 = 26.
   - Написать класс и наследник от него, продемонстрировав вызов конструктора инициализации базового класса из конструктора инициализации класса-наследника.
@@ -92,4 +92,4 @@
 
 ## :fire: Решения :fire:
 
-### Task \#11
+### Task #11
