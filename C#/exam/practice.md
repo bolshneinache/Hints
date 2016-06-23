@@ -101,24 +101,24 @@
 - 1 Part
 
   ```c#
-  Console.WriteLine("Enter ther number");
-  var n = Console.ReadLine();
+   Console.WriteLine("Enter ther number");
+   var n = Console.ReadLine();
 
-  if (n != null) {
-   var array = n.Select(ch => ch - '0').ToArray();
+   if (n != null) {
+    var array = n.Select(ch => ch - '0').ToArray();
 
    if (array.Length != 3) {
-    Console.WriteLine($ "The new number 'm' is {n}");
+     Console.WriteLine($ "The new number 'm' is {n}");
    } else {
-    var m = string.Join("", array.Reverse());
+      var m = string.Join("", array.Reverse());
 
-    Console.WriteLine($ "The new number 'm' is {m}");
-   }
+     Console.WriteLine($ "The new number 'm' is {m}");
+    }
   }
 
   Console.ReadKey();
   ```
-<script src="https://gist.github.com/Egorvoz/97e361bac0a049df41d0e164d9d96149.js"></script>
+
 - 2 Part
 
 ### Task #13
