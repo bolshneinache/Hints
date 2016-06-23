@@ -1,4 +1,4 @@
-# FAQ Programming
+# FAQ Programming - THEORY
 
 ![Programming Language](https://udemy-images.udemy.com/course/750x422/658604_d6b0_3.jpg)
 
@@ -53,3 +53,5 @@
 10. :neckbeard: [Прямой и косвенный вызов методов.](http://github.com) :suspect:
 
 ![ENGLISH MOTHERFUCKER](http://lamcdn.net/lookatme.ru/post_image-image/1CoePZ07Bm6g1HWMWbMZmQ-article.jpg)
+
+## :fire: Ответы :fire:
