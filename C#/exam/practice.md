@@ -118,10 +118,8 @@
 
   Console.ReadKey();
   ```
-- 2 Part
 
-  ```
-  ```
+- 2 Part
 
 ### Task #13
 
