@@ -98,6 +98,31 @@
 
 ### Task #12
 
+- 1 Part
+
+  ```c#
+  Console.WriteLine("Enter ther number");
+  var n = Console.ReadLine();
+
+  if (n != null) {
+   var array = n.Select(ch => ch - '0').ToArray();
+
+   if (array.Length != 3) {
+    Console.WriteLine($ "The new number 'm' is {n}");
+   } else {
+    var m = string.Join("", array.Reverse());
+
+    Console.WriteLine($ "The new number 'm' is {m}");
+   }
+  }
+
+  Console.ReadKey();
+  ```
+- 2 Part
+
+  ```
+  ```
+
 ### Task #13
 
 ### Task #14
