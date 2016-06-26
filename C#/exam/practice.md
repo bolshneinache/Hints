@@ -438,57 +438,172 @@
   ```c#
   delegate void MyEventHandler();
 
-    class MyEvent
-    {
-        public event MyEventHandler SomeEvent;
-        void OnSomeEvent()
-        {
-            if (SomeEvent != null) SomeEvent();
-        }
-        public void MyMethod()
-        {
-            int X;
-            for (X = 10; X <= 20; X++)
-                if (X == 15) OnSomeEvent();
-        }
+  class MyEvent
+  {
+      public event MyEventHandler SomeEvent;
+      void OnSomeEvent()
+      {
+          if (SomeEvent != null) SomeEvent();
+      }
+      public void MyMethod()
+      {
+          int X;
+          for (X = 10; X <= 20; X++)
+              if (X == 15) OnSomeEvent();
+      }
 
-    }
-    class Program
-    {
-        static void Handler()
-        {
-            Console.WriteLine("X==15");
-        }
-        static void Main(string[] args)
-        {
-            MyEvent me = new MyEvent();
-            me.SomeEvent += Handler;
-            me.MyMethod();
-            Console.Read();
-        }
-    }
+  }
+  class Program
+  {
+      static void Handler()
+      {
+          Console.WriteLine("X==15");
+      }
+      static void Main(string[] args)
+      {
+          MyEvent me = new MyEvent();
+          me.SomeEvent += Handler;
+          me.MyMethod();
+          Console.Read();
+      }
+  }
   ```
 
 ### Task #9
 
 - 1 Part
 
-  `c#`
+  ```c#
+  Console.Write("Введите число: ");
+  string number = Console.ReadLine();
+  int result = 0;
+  int n;
+  bool DataIsCorrect = int.TryParse(number, out n);
+
+  if (!DataIsCorrect)
+  {
+      Console.WriteLine("Некорректные данные");
+  }
+  else
+  {
+      n = int.Parse(number);
+
+      if (n < 10)
+      {
+          Console.WriteLine("Слишком короткое число");
+          Console.ReadKey();
+      }
+      else
+      {
+          for (int i = 0; n > 9; i++)
+          {
+              char lastchar = number[number.Length - (i + 1)];
+              string strnum = lastchar.ToString();
+              int lastnum = int.Parse(strnum);
+
+              if (lastnum == 0)
+              {
+                  result++;
+              }
+              else
+              {
+                  result = 0;
+              }
+              n = n / 10;
+          }
+          Console.WriteLine("Количество нулей подряд в старших разрядах: " + result);
+          Console.ReadKey();
+      }
+  }
+  ```
 
 - 2 Part
 
   ```c#
+  class Example {
+    private string _stringProperty;
+    public string StringProperty {
+      get {
+       return _stringProperty;
+      }
+      set {
+        if (string.IsNullOrWhiteSpace(value))
+          throw new ArgumentException(" 'value' is null or whitespace!");
+        _stringProperty = value;
+      }
+    }
+
+    private int _integerProperty;
+    public int IntegerProperty {
+      get {
+       return _integerProperty;
+      }
+      set {
+        if (value <= 0)
+          throw new ArgumentException("value must be >0!");
+
+        _integerProperty = value;
+      }
+    }
+  }
   ```
 
 ### Task #10
 
 - 1 Part
 
-  `c#`
+  ```c#
+  Console.Write("Введите число: ");
+  string number = Console.ReadLine();
+
+  int result = 0;
+  int num;
+  int len = number.Length;
+
+  char[] arrchar = new char[len / 2];
+  string[] strchar = new string[len / 2];
+  int[] LeftArr = new int[len / 2];
+  bool DataIsCorrect = int.TryParse(number, out num);
+
+  if (!DataIsCorrect) {
+   Console.WriteLine("Некорректные данные");
+  } else {
+   num = int.Parse(number);
+
+   if (num < 10) {
+    Console.WriteLine("Слишком короткое число");
+    Console.ReadKey();
+   } else if (len % 2 != 0) {
+    Console.WriteLine("Число имеет нечётное количество цифр!");
+    Console.ReadKey();
+   } else {
+    for (int i = 0; i < len / 2; i++) {
+     arrchar[i] = number[i];
+     strchar[i] = arrchar[i].ToString();
+     LeftArr[i] = int.Parse(strchar[i]);
+     result += LeftArr[i];
+    }
+
+    Console.WriteLine("Сумма цифр в первой половине числа: " + result);
+    Console.ReadKey();
+   }
+  }
+  ```
 
 - 2 Part
 
-  `c#`
+  ```c#
+  class Properties {
+    private int _example1;
+
+    public int Example1 {
+            get { return _example1; }
+            set { _example1 = value; }
+    }
+
+    public int Example2 { get; set; }
+  }
+  ```
 
 ### Task #11
 
