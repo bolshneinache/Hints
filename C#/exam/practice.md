@@ -553,41 +553,41 @@
 - 1 Part
 
   ```c#
-  Console.Write("Введите число: ");
-  string number = Console.ReadLine();
+    Console.Write("Введите число: ");
+    string number = Console.ReadLine();
 
-  int result = 0;
-  int num;
-  int len = number.Length;
+    int result = 0;
+    int num;
+    int len = number.Length;
 
-  char[] arrchar = new char[len / 2];
-  string[] strchar = new string[len / 2];
-  int[] LeftArr = new int[len / 2];
-  bool DataIsCorrect = int.TryParse(number, out num);
+    char[] arrchar = new char[len / 2];
+    string[] strchar = new string[len / 2];
+    int[] LeftArr = new int[len / 2];
+    bool DataIsCorrect = int.TryParse(number, out num);
 
-  if (!DataIsCorrect) {
-   Console.WriteLine("Некорректные данные");
-  } else {
-   num = int.Parse(number);
+    if (!DataIsCorrect) {
+     Console.WriteLine("Некорректные данные");
+    } else {
+     num = int.Parse(number);
 
-   if (num < 10) {
-    Console.WriteLine("Слишком короткое число");
-    Console.ReadKey();
-   } else if (len % 2 != 0) {
-    Console.WriteLine("Число имеет нечётное количество цифр!");
-    Console.ReadKey();
-   } else {
-    for (int i = 0; i < len / 2; i++) {
-     arrchar[i] = number[i];
-     strchar[i] = arrchar[i].ToString();
-     LeftArr[i] = int.Parse(strchar[i]);
-     result += LeftArr[i];
+     if (num < 10) {
+      Console.WriteLine("Слишком короткое число");
+      Console.ReadKey();
+     } else if (len % 2 != 0) {
+      Console.WriteLine("Число имеет нечётное количество цифр!");
+      Console.ReadKey();
+     } else {
+      for (int i = 0; i < len / 2; i++) {
+       arrchar[i] = number[i];
+       strchar[i] = arrchar[i].ToString();
+       LeftArr[i] = int.Parse(strchar[i]);
+       result += LeftArr[i];
+      }
+
+      Console.WriteLine("Сумма цифр в первой половине числа: " + result);
+      Console.ReadKey();
+     }
     }
-
-    Console.WriteLine("Сумма цифр в первой половине числа: " + result);
-    Console.ReadKey();
-   }
-  }
   ```
 
 - 2 Part
