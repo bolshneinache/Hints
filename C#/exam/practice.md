@@ -94,6 +94,48 @@
 
 ![PIED PIPER](http://blogs-images.forbes.com/stevenrosenbaum/files/2015/06/silicon-valley-cast.jpg)
 
+### Task #1
+
+- 1 Part
+
+  ```
+  int a, b, c;
+
+  Console.WriteLine("Введите A:");
+  a = int.Parse(Console.ReadLine());
+
+  Console.WriteLine("Введите B:");
+  b = int.Parse(Console.ReadLine());
+
+  Console.WriteLine("Введите C:");
+  c = int.Parse(Console.ReadLine());
+
+  int x = (c - b) / a;
+  Console.WriteLine("X = " + x);
+
+  Console.ReadKey();
+  ```
+
+- 2 Part
+
+### Task #2
+
+### Task #3
+
+### Task #4
+
+### Task #5
+
+### Task #6
+
+### Task #7
+
+### Task #8
+
+### Task #9
+
+### Task #10
+
 ### Task #11
 
 ### Task #12
