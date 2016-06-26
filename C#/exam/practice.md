@@ -98,7 +98,7 @@
 
 - 1 Part
 
-  ```
+  ```c#
   int a, b, c;
 
   Console.WriteLine("Введите A:");
@@ -118,25 +118,387 @@
 
 - 2 Part
 
+  ```c#
+  private int _example1;
+  public int Example1 {
+    get {
+      return _example1;
+    }
+    set {
+      _example1 = value;
+    }
+  }
+  public int Example2 { get; set; }
+  ```
+
 ### Task #2
+
+- 1 Part
+
+  ```c#
+  Console.Write("n = ");
+  int n = int.Parse(Console.ReadLine());
+
+  long nfact=1;
+  for(int i=2;i<=n;++i) {
+    nfact*=i;
+  }
+
+  Console.WriteLine("n! = "+nfact);Console.ReadKey();
+  ```
+
+- 2 Part
+
+  ```c#
+  class BaseClass
+    {
+        public int First { get; set; }
+
+        public BaseClass(int first)
+        {
+            First = first;
+        }
+    }
+
+    class InheritorClass : BaseClass
+    {
+        public int Second { get; set; }
+
+        public InheritorClass(int first, int second) : base(first)
+        {
+            Second = second;
+        }
+    }
+  ```
 
 ### Task #3
 
+- 1 Part
+
+  ```c#
+  int a = 1;
+
+  Console.Write("Введите длительность эксперимента:");
+  int x = int.Parse(Console.ReadLine());
+
+  for (int i = 2; i < x; i++){
+      a = a * 2;
+      i = i + 2;
+  }
+
+  Console.WriteLine("Итоговое количество амёб = " + a);
+  Console.ReadKey();
+  ```
+
+- 2 Part
+
+  ```c#
+  abstract class BaseClass {
+        abstract public void AbstractMethod();
+    }
+
+    class InheritorClass : BaseClass {
+        public override void AbstractMethod() {
+            Console.WriteLine("Test");
+        }
+    }
+  ```
+
 ### Task #4
+
+- 1 Part
+
+  ```c#
+  bool prost = true;
+
+  Console.WriteLine("Введите число");
+  int x = int.Parse(Console.ReadLine());
+
+  for (int i = 2; i <= x / 2; i++) {
+      if (x % i == 0) {
+          prost = false;
+          break;
+      }
+  }
+
+  if (prost) {
+      Console.WriteLine("Число простое");
+  } else {
+      Console.WriteLine("Число не простое");
+  }
+
+  Console.ReadKey();
+  ```
+
+- 2 Part
+
+  ```c#
+  class BaseClass {
+        public virtual void VirtualMethod() {
+            Console.WriteLine("Не переопределённый метод");
+        }
+    }
+
+    class InheritorClass : BaseClass {
+        public override void VirtualMethod() {
+            Console.WriteLine("Переопределённый метод");
+        }
+    }
+  ```
 
 ### Task #5
 
+- 1 Part
+
+  ```c#
+  Console.Write("Введите радиус круга: ");
+
+  int dots = 0;
+  int r = int.Parse(Console.ReadLine());
+
+  for (int x = -r; x <= r; x++) {
+      for (int y = -r; y <= r; y++) {
+          if (x * x + y * y <= r * r) {
+              dots++;
+          }
+      }
+  }
+
+  Console.WriteLine("Количество точек: " + dots);
+  Console.ReadKey();
+  ```
+
+- 2 Part
+
+  ```c#
+  class BaseClass {
+    private int Property;
+    public virtual int _property {
+      get { return _property; }
+      set { _property = value; }
+    }
+  }
+
+  class InheritorClass : BaseClass {
+    public override int _property {
+      get { return base._property - 1; }
+      set { base._property = value; }
+    }
+  }
+  ```
+
 ### Task #6
+
+- 1 Part
+
+  ```c#
+  Console.Write("Введите число:");
+
+  string number = Console.ReadLine();
+  int n = 0;
+  bool DataIsCorrect = int.TryParse(number, out n);
+
+  if (!DataIsCorrect) {
+      Console.WriteLine("Некорректные данные");
+  } else {
+    n = int.Parse(number);
+
+    if (n < 10) {
+      Console.WriteLine("Введённое число меньше 10");
+      Console.ReadKey();
+    } else {
+      char first = (number[0]);
+      char last = (number[number.Length - 1]);
+
+      string strfirst = first.ToString();
+      string strlast = last.ToString();
+
+      int intfirst = int.Parse(strfirst);
+      int intlast = int.Parse(strlast);
+
+      int Sum = intfirst + intlast;
+      Console.WriteLine("Сумма первой и последней цифр заданного числа:" + Sum);
+      Console.ReadKey();
+    }
+  }
+  ```
+
+- 2 Part
+
+  ```c#
+  public interface IExample {
+    int Property { get; set; }
+    void Method();
+  }
+
+  class ExampleClass: IExample {
+    private int _property;
+
+    public int Property {
+      get { return _property; }
+      set { _property = value; }
+    }
+
+    public void Method() {}
+  }
+  ```
 
 ### Task #7
 
+- 1 Part
+
+  ```c#
+  Console.Write("Введите число:");
+
+  string number = Console.ReadLine();
+  int n = 0;
+  bool DataIsCorrect = int.TryParse(number, out n);
+
+  if (!DataIsCorrect) {
+    Console.WriteLine("Некорректные данные");
+  } else {
+    n = int.Parse(number);
+    if (n < 10) {
+      Console.WriteLine("Введённое число меньше 10");
+      Console.ReadKey();
+    } else {
+      Console.Write(number[number.Length - 1]);
+      for (int i = 1; i < number.Length - 1; i++) {
+        Console.Write(number[i]);
+      }
+
+      Console.Write(number[0]);
+      Console.ReadKey();
+    }
+  }
+  ```
+
+- 2 Part
+
+  ```c#
+  class FinalizeObject : IDisposable {
+    public int id { get; set; }
+    public FinalizeObject(int id) {
+      this.id = id;
+    }
+    public void Dispose() {
+        Console.WriteLine("Высвобождение объекта!");
+    }
+  }
+
+  class Program{
+    static void Main(string[] args) {
+      FinalizeObject obj = new FinalizeObject(4);
+      obj.Dispose();
+      Console.ReadKey();
+    }
+  }
+  ```
+
 ### Task #8
+
+- 1 Part
+
+  ```c#
+  Console.Write("Введите число: ");
+  string number = Console.ReadLine();
+
+  int result=0;
+  int n;
+  bool DataIsCorrect=int.TryParse(number,out n);
+
+  if(!DataIsCorrect) {
+    Console.WriteLine("Некорректные данные");
+  } else {
+    n = int.Parse(number);
+
+    if(n<10) {
+      Console.WriteLine("Слишком короткое число");Console.ReadKey();
+    } else {
+      for(int i=0;n>9;i++) {
+        char lastchar = number[number.Length-(i+1)];
+        string strnum = lastchar.ToString();
+        int lastnum = int.Parse(strnum);
+
+        if(lastnum==0) {
+          result++;
+        } else {
+          break;
+        }
+        n=n/10;
+      }
+
+      Console.WriteLine("Количество нулей подряд с конца:"+result);
+      Console.ReadKey();
+    }
+  ```
+
+- 2 Part
+
+  ```c#
+  delegate void MyEventHandler();
+
+    class MyEvent
+    {
+        public event MyEventHandler SomeEvent;
+        void OnSomeEvent()
+        {
+            if (SomeEvent != null) SomeEvent();
+        }
+        public void MyMethod()
+        {
+            int X;
+            for (X = 10; X <= 20; X++)
+                if (X == 15) OnSomeEvent();
+        }
+
+    }
+    class Program
+    {
+        static void Handler()
+        {
+            Console.WriteLine("X==15");
+        }
+        static void Main(string[] args)
+        {
+            MyEvent me = new MyEvent();
+            me.SomeEvent += Handler;
+            me.MyMethod();
+            Console.Read();
+        }
+    }
+  ```
 
 ### Task #9
 
+- 1 Part
+
+  `c#`
+
+- 2 Part
+
+  ```c#
+  ```
+
 ### Task #10
 
+- 1 Part
+
+  `c#`
+
+- 2 Part
+
+  `c#`
+
 ### Task #11
+
+- 1 Part
+
+  `c#`
+
+- 2 Part
+
+  `c#`
 
 ### Task #12
 
