@@ -90,6 +90,10 @@
 
   ![ENGLISH MOTHERFUCKER](http://lamcdn.net/lookatme.ru/post_image-image/1CoePZ07Bm6g1HWMWbMZmQ-article.jpg)
 
+## :fire: ЗА ПРАВИЛЬНОСТЬ РЕШЕНИЙ НЕ ОТВЕЧАЮ. ТАК КАК НАДО САМИМ ЕЩЕ БЫЛО РАЗБИРАТЬ. И ЕСЛИ ВАМ НЕ НРАВИТСЯ, ТО: :fire:
+
+![Fuck Yourself](http://s2.quickmeme.com/img/91/912bcb507515413fde835d7b906343c2964db7b1a360a4f373cef3daaad16122.jpg)
+
 ## :fire: Решения :fire:
 
 ![PIED PIPER](http://blogs-images.forbes.com/stevenrosenbaum/files/2015/06/silicon-valley-cast.jpg)
@@ -823,12 +827,206 @@
 
 ### Task #16
 
+- Part 1
+
+  ```c#
+    Console.WriteLine("Enter number");
+    var value = 0;
+    if (!TryParse(Console.ReadLine(), out value)) {
+     return; //ERROR!!
+    } else {
+     for (int a = 0; a < value; a++) {
+      for (int b = 0; b < value; b++) {
+       for (int c = 0; c < value; c++) {
+        if ((a * a + b * b) == (c * c)) {
+         Console.WriteLine($ "a = {a}, b = {b}, c = {c},");
+        }
+       }
+      }
+     }
+    }
+
+    Console.ReadKey();
+  ```
+
+- Part 2
+
+  ```c#
+  class FinalizeObject : IDisposable {
+    public int id { get; set; }
+    public FinalizeObject(int id) {
+      this.id = id;
+    }
+    public void Dispose() {
+        Console.WriteLine("Высвобождение объекта!");
+    }
+  }
+
+  class Program{
+    static void Main(string[] args) {
+      FinalizeObject obj = new FinalizeObject(4);
+      obj.Dispose();
+      Console.ReadKey();
+    }
+  }
+  ```
+
 ### Task #17
+
+- Part 1
+
+  ```c#
+  int arrindex = 0;
+  bool prost = true;
+  Console.WriteLine("Введите число N");
+  int n = int.Parse(Console.ReadLine());
+  int[] simplenums = new int[n];
+
+  for (int x = 1; x <= n; x++) {
+   for (int i = 2; i <= x / 2; i++) {
+    if (x % i == 0) {
+     prost = false;
+     break;
+    }
+   }
+   if (prost) {
+    simplenums[arrindex] = x;
+    arrindex++;
+   }
+   prost = true;
+  }
+
+  foreach(var element in simplenums) {
+   if (element > 0)
+    Console.Write(element + ",");
+  }
+
+  Console.ReadKey();
+  ```
+
+- Part 2
+
+  ```c#
+  delegate void MyEventHandler();
+
+  class MyEvent {
+   public event MyEventHandler SomeEvent;
+   void OnSomeEvent() {
+    if (SomeEvent != null) SomeEvent();
+   }
+   public void MyMethod() {
+    int X;
+    for (X = 10; X <= 20; X++)
+     if (X == 15) OnSomeEvent();
+   }
+  }
+
+  class Program {
+   static void Handler() {
+    Console.WriteLine("X==15");
+   }
+   static void Main(string[] args) {
+    MyEvent me = new MyEvent();
+    me.SomeEvent += Handler;
+    me.MyMethod();
+    Console.Read();
+   }
+  }
+  ```
 
 ### Task #18
 
+- Part 1
+
+- Part 2
+
 ### Task #19
+
+- Part 1
+
+- Part 2
+
+  ```c#
+  private int _example1;
+  public int Example1 {
+    get {
+      return _example1;
+    }
+    set {
+      _example1 = value;
+    }
+  }
+  public int Example2 { get; set; }
+  ```
 
 ### Task #20
 
+- Part 1
+
+- Part 2
+
+  ```c#
+  // или вариант у Task #2 - Part 2
+  class MyClass
+    {
+        public int x, y, z;
+
+        // Конструктор базового класса
+        public MyClass(int x, int y, int z)
+        {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+    }
+
+    class ClassA : MyClass
+    {
+        int point;
+
+        // Конструктор производного класса
+        public ClassA(int point, int x, int y, int z)
+            : base(x, y, z)
+        {
+            this.point = point;
+        }
+
+        public void Pointer(ClassA obj)
+        {
+            obj.x *= obj.point;
+            obj.y *= obj.point;
+            obj.z *= obj.point;
+            Console.WriteLine("Новые координаты объекта: {0} {1} {2}", obj.x, obj.y, obj.z);
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            ClassA obj = new ClassA(10, 1, 4, 3);
+            Console.WriteLine("Координаты объекта: {0} {1} {2}", obj.x, obj.y, obj.z);
+            obj.Pointer(obj);
+
+            Console.ReadLine();
+        }
+    }
+  ```
+
 ### Task #21
+
+- Part 1
+
+- Part 2
+
+  ```c#
+  abstract class BaseClass {
+    abstract public void AbstractMethod();
+  }
+
+  class InheritorClass : BaseClass {
+    public override void AbstractMethod() {
+      Console.WriteLine("Test");
+    }
+  }
+  ```
