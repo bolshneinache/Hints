@@ -94,6 +94,19 @@
 
 ![PIED PIPER](http://blogs-images.forbes.com/stevenrosenbaum/files/2015/06/silicon-valley-cast.jpg)
 
+## :fire: ACHTUNG!!! :fire:
+
+```c#
+  //Также можно юзать такой подход для парсинга текста из терминала:
+  Console.WriteLine("Enter number");
+  int numb = 0;
+  if (!int.tryParse(Console.ReadLine(), out numb)) {
+    return; //ERROR!!
+  } else {
+   // ...
+  }
+```
+
 ### Task #1
 
 - 1 Part
@@ -194,14 +207,14 @@
 
   ```c#
   abstract class BaseClass {
-        abstract public void AbstractMethod();
-    }
+    abstract public void AbstractMethod();
+  }
 
-    class InheritorClass : BaseClass {
-        public override void AbstractMethod() {
-            Console.WriteLine("Test");
-        }
+  class InheritorClass : BaseClass {
+    public override void AbstractMethod() {
+      Console.WriteLine("Test");
     }
+  }
   ```
 
 ### Task #4
@@ -234,16 +247,16 @@
 
   ```c#
   class BaseClass {
-        public virtual void VirtualMethod() {
-            Console.WriteLine("Не переопределённый метод");
-        }
+    public virtual void VirtualMethod() {
+      Console.WriteLine("Не переопределённый метод");
     }
+  }
 
-    class InheritorClass : BaseClass {
-        public override void VirtualMethod() {
-            Console.WriteLine("Переопределённый метод");
-        }
+  class InheritorClass : BaseClass {
+    public override void VirtualMethod() {
+        Console.WriteLine("Переопределённый метод");
     }
+  }
   ```
 
 ### Task #5
@@ -613,7 +626,52 @@
 
 - 2 Part
 
-  `c#`
+```c#
+  class MyClass
+    {
+        public int x, y, z;
+
+        // Конструктор базового класса
+        public MyClass(int x, int y, int z)
+        {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+    }
+
+    class ClassA : MyClass
+    {
+        int point;
+
+        // Конструктор производного класса
+        public ClassA(int point, int x, int y, int z)
+            : base(x, y, z)
+        {
+            this.point = point;
+        }
+
+        public void Pointer(ClassA obj)
+        {
+            obj.x *= obj.point;
+            obj.y *= obj.point;
+            obj.z *= obj.point;
+            Console.WriteLine("Новые координаты объекта: {0} {1} {2}", obj.x, obj.y, obj.z);
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            ClassA obj = new ClassA(10, 1, 4, 3);
+            Console.WriteLine("Координаты объекта: {0} {1} {2}", obj.x, obj.y, obj.z);
+            obj.Pointer(obj);
+
+            Console.ReadLine();
+        }
+    }
+```
 
 ### Task #12
 
@@ -636,11 +694,132 @@
 
 - 2 Part
 
+  ```c#
+  abstract class BaseClass {
+    abstract public void AbstractMethod();
+  }
+
+  class InheritorClass : BaseClass {
+    public override void AbstractMethod() {
+      Console.WriteLine("Test");
+    }
+  }
+  ```
+
 ### Task #13
+
+- Part 1
+
+  ```c#
+    Console.WriteLine("Enter ther number");
+    var n = Console.ReadLine();
+
+    if (n != null) {
+     var array = n.Select(ch => ch - '0').ToArray();
+
+     if (array.Length != 5) {
+      Console.WriteLine($ "The new number 'm' is {n}");
+     } else {
+      var m = string.Join("", array.Where(el => el != array[2]).ToArray());
+
+      Console.WriteLine($ "The new number 'm' is {m}");
+     }
+    }
+
+    Console.ReadKey();
+  ```
+
+- Part 2
+
+  ```c#
+  class BaseClass {
+    public virtual void VirtualMethod() {
+      Console.WriteLine("Не переопределённый метод");
+    }
+  }
+
+  class InheritorClass : BaseClass {
+    public override void VirtualMethod() {
+        Console.WriteLine("Переопределённый метод");
+    }
+  }
+  ```
 
 ### Task #14
 
+- Part 1
+
+  ```c#
+    Console.WriteLine("Enter ther number"); var n = Console.ReadLine();
+
+    if (n != null) {
+      var res = Int32.Parse(string.Join("", n.Select(ch => ch - '0').ToArray().Reverse())) * 4;
+
+      Console.WriteLine($ "The result is {res}");
+    }
+
+    Console.ReadKey();
+  ```
+
+- Part 2
+
+  ```c#
+  class BaseClass {
+    private int Property;
+    public virtual int _property {
+      get { return _property; }
+      set { _property = value; }
+    }
+  }
+
+  class InheritorClass : BaseClass {
+    public override int _property {
+      get { return base._property - 1; }
+      set { base._property = value; }
+    }
+  }
+  ```
+
 ### Task #15
+
+- Part 1
+
+  ```c#
+  Console.WriteLine("Enter number");
+  var numb = 0;
+  if (!TryParse(Console.ReadLine(), out numb)) {
+   return; //ERROR!!
+  } else {
+   var n = 1;
+   while (n != numb + 1) {
+    if (numb % n == 0)
+     Console.WriteLine($ "{numb} делится на {n} без остатка");
+    n++;
+   }
+  }
+
+  Console.ReadKey();
+  ```
+
+- Part 2
+
+  ```c#
+  public interface IExample {
+    int Property { get; set; }
+    void Method();
+  }
+
+  class ExampleClass: IExample {
+    private int _property;
+
+    public int Property {
+      get { return _property; }
+      set { _property = value; }
+    }
+
+    public void Method() {}
+  }
+  ```
 
 ### Task #16
 
