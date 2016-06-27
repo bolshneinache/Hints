@@ -104,7 +104,7 @@
   //Также можно юзать такой подход для парсинга текста из терминала:
   Console.WriteLine("Enter number");
   int numb = 0;
-  if (!int.tryParse(Console.ReadLine(), out numb)) {
+  if (!int.TryParse(Console.ReadLine(), out numb)) {
     return; //ERROR!!
   } else {
    // ...
