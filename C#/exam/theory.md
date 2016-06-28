@@ -249,3 +249,94 @@ class Program {
 // поле класса это просто переменная внутри класса - как пример для get и set
 // также есть ствойство readonly - для чтения и нельзя дважды установить значение
 ```
+
+### Question 8
+
+- [MSDN](https://msdn.microsoft.com/ru-ru/library/8f1hz171.aspx)
+- [Параметры методов C#](http://metanit.com/sharp/tutorial/2.9.php)
+
+### Question 9
+
+```c#
+// Constructor
+class Sample {
+  // ...
+  Sample () {}
+}
+```
+
+```c#
+// Finalize
+class Sample {
+  // ...
+  ~Sample() {}
+}
+```
+### Question 10
+
+- ???
+
+### Question 11
+
+```c#
+// one dimension array
+int[] array = {1,2,3,4,5};
+```
+
+```c#
+// two/multi dimension array
+int[,] array {
+  {1,2,3,4,5},
+  {1,2,3,4,5},
+  {1,2,3,4,5},
+  {1,2,3,4,5},
+  {1,2,3,4,5}
+}
+```
+
+```c#
+// ladder array
+int[][] array = {
+  {1,2,3},
+  {1,2,3,4,5}
+};
+```
+
+- [Ladder Array](http://professorweb.ru/my/csharp/charp_theory/level4/4_3.php)
+
+```c#
+int[] fibarray = new int[] { 0, 1, 1, 2, 3, 5, 8, 13 };
+foreach (int element in fibarray) {
+  System.Console.WriteLine(element);
+}
+```
+
+```c#
+// Var 1
+for (int i = 0; i < houses.Count; i++) {
+    houses[i] = new GameObject();
+}
+
+// Var 2
+var houses = new GameObject[200].Select(h => new GameObject()).ToArray();
+
+// Var 3
+var houses = Enumerable.Repeat(0, 200).Select(h => new GameObject()).ToArray();
+
+// Var 4
+class Point {
+  public int x;
+  public int y;
+}
+
+point[] array = new point[100];
+foreach(point p in array) {
+  p = new Point();
+}
+array[0].x = 5;
+```
+### Question 13
+
+```c#
+// StringBuilder
+```
