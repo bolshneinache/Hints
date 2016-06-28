@@ -938,11 +938,78 @@
 
 - Part 1
 
+  ```c#
+  Console.WriteLine("Enter number");
+  var value = 0;
+  if (!TryParse(Console.ReadLine(), out value)) {
+   return; //ERROR!!
+  } else {
+   var modifiedValue = value.ToString().Select(ch => ch - '0').ToArray();
+   var minElement = modifiedValue.Min();
+   modifiedValue[modifiedValue.Length - 1] = minElement;
+
+   Console.WriteLine($ "The new value is {string.Join("
+    ", modifiedValue)}");
+  }
+
+  Console.ReadKey();
+  ```
+
 - Part 2
+
+  ```c#
+  public class Sample {
+    private string _name;
+    private int _age;
+
+    public string Name {
+      get {
+       return _name;
+      }
+      set {
+       if (value == null) {
+        throw new ArgumentNullException($ "The name is null!");
+       } else {
+        _name = value;
+       }
+      }
+    }
+
+    public int Age {
+      get {
+       return _age;
+      }
+      set {
+       if (value <= 0) {
+        throw new IndexOutOfRangeException($ "The age must be greater than 0!");
+       } else {
+        _age = value;
+       }
+      }
+    }
+  }
+  ```
 
 ### Task #19
 
 - Part 1
+
+  ```c#
+  Console.WriteLine("Enter number");
+  var value = 0;
+  if (!TryParse(Console.ReadLine(), out value)) {
+   return; //ERROR!!
+  } else {
+   var modifiedValue = value.ToString().Select(ch => ch - '0').ToArray();
+   var maxElement = modifiedValue.Max();
+   modifiedValue[modifiedValue.Length - 1] = maxElement;
+
+   Console.WriteLine($ "The new value is {string.Join("
+    ", modifiedValue)}");
+  }
+
+  Console.ReadKey();
+  ```
 
 - Part 2
 
@@ -962,6 +1029,22 @@
 ### Task #20
 
 - Part 1
+
+  ```c#
+  Console.WriteLine("Enter number");
+  var value = 0;
+  if (!TryParse(Console.ReadLine(), out value)) {
+   return; //ERROR!!
+  } else {
+   var modifiedValue = value.ToString().Select(ch => ch - '0').ToArray();
+   Array.Sort(modifiedValue);
+
+   Console.WriteLine($ "The new value is {string.Join("
+    ", modifiedValue.Reverse())}");
+  }
+
+  Console.ReadKey();
+  ```
 
 - Part 2
 
@@ -1016,6 +1099,23 @@
 ### Task #21
 
 - Part 1
+
+  ```c#
+  Console.WriteLine("Enter number");
+  var value = 0;
+  if (!TryParse(Console.ReadLine(), out value)) {
+   return; //ERROR!!
+  } else {
+   var modifiedValue = value.ToString().Select(ch => ch - '0').ToArray();
+   Array.Sort(modifiedValue);
+
+   Console.WriteLine($ "The new value is {string.Join("
+    ", modifiedValue)}");
+  }
+
+
+  Console.ReadKey();
+  ```
 
 - Part 2
 
