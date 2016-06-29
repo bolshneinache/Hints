@@ -801,3 +801,303 @@ namespace ConsoleApplication1 {
 ```
 
 ### Question 21
+
+### Question 22
+
+- [Props MSDN](https://msdn.microsoft.com/ru-ru/library/x9fsa0sw.aspx)
+- [Props](http://professorweb.ru/my/csharp/charp_theory/level5/5_14.php)
+
+```c#
+// Virtual props
+class MyBaseClass
+{
+    // virtual auto-implemented property. Overrides can only
+    // provide specialized behavior if they implement get and set accessors.
+    public virtual string Name { get; set; }
+
+    // ordinary virtual property with backing field
+    private int num;
+    public virtual int Number
+    {
+        get { return num; }
+        set { num = value; }
+    }
+}
+
+
+class MyDerivedClass : MyBaseClass
+{
+    private string name;
+
+   // Override auto-implemented property with ordinary property
+   // to provide specialized accessor behavior.
+    public override string Name
+    {
+        get
+        {
+            return name;
+        }
+        set
+        {
+            if (value != String.Empty)
+            {
+                name = value;
+            }
+            else
+            {
+                name = "Unknown";
+            }
+        }
+    }
+
+}
+```
+
+```c#
+// compile with: csc /target:library abstractshape.cs
+public abstract class Shape
+{
+    private string name;
+
+    public Shape(string s)
+    {
+        // calling the set accessor of the Id property.
+        Id = s;
+    }
+
+    public string Id
+    {
+        get
+        {
+            return name;
+        }
+
+        set
+        {
+            name = value;
+        }
+    }
+
+    // Area is a read-only property - only a get accessor is needed:
+    public abstract double Area
+    {
+        get;
+    }
+
+    public override string ToString()
+    {
+        return Id + " Area = " + string.Format("{0:F2}", Area);
+    }
+}
+
+// compile with: csc /target:library /reference:abstractshape.dll shapes.cs
+public class Square : Shape
+{
+    private int side;
+
+    public Square(int side, string id)
+        : base(id)
+    {
+        this.side = side;
+    }
+
+    public override double Area
+    {
+        get
+        {
+            // Given the side, return the area of a square:
+            return side * side;
+        }
+    }
+}
+
+public class Circle : Shape
+{
+    private int radius;
+
+    public Circle(int radius, string id)
+        : base(id)
+    {
+        this.radius = radius;
+    }
+
+    public override double Area
+    {
+        get
+        {
+            // Given the radius, return the area of a circle:
+            return radius * radius * System.Math.PI;
+        }
+    }
+}
+
+public class Rectangle : Shape
+{
+    private int width;
+    private int height;
+
+    public Rectangle(int width, int height, string id)
+        : base(id)
+    {
+        this.width = width;
+        this.height = height;
+    }
+
+    public override double Area
+    {
+        get
+        {
+            // Given the width and height, return the area of a rectangle:
+            return width * height;
+        }
+    }
+}
+```
+
+### Question 23
+
+- ???
+
+### Question 24
+
+- ???
+
+### Question 25
+
+```c#
+// Читает следующий символ из стандартного входного потока
+Console.Read();
+
+// Читает следующую строку символов из стандартного входного потока или нулевое 
+// значение, пока пользователь не нажал клавишу Enter. Возвращается строка 
+// типа string
+Console.ReadLine();
+
+// Поддерживает форматированный вывод, вывод всех стандартных типов
+Console.Write();
+
+//
+Console.WriteLine();
+
+// Поддерживает форматированный вывод, вывод всех стандартных типов. 
+// Переводит курсор на следующую строку.
+Cosnole.ReadKey();
+```
+
+### Question 26
+
+
+
+### Question 27
+
+- [Сборки](http://professorweb.ru/my/csharp/charp_theory/level1/1_7.php)
+
+- Какой бы язык .NET не выбирался для программирования, важно понимать, что хотя двоичные .NET-единицы имеют такое же файловое расширение, как и двоичные единицы СОМ-серверов и неуправляемых программ Win32 (* . dll или * . ехе), внутренне они устроены абсолютно по-другому. Например, двоичные .NET-единицы * .dll не экспортируют методы для упрощения взаимодействия с исполняющей средой СОМ (поскольку .NET — это не СОМ). Более того, они не описываются с помощью библиотек СОМ-типов и не регистрируются в системном реестре. Пожалуй, самым важным является то, что они содержат не специфические, а наоборот, не зависящие от платформы инструкции на промежуточном языке (Intermediate Language — IL), а также метаданные типов. На следующей схеме показано, как все это выглядит:
+
+![Shceme](http://professorweb.ru/my/csharp/charp_theory/level1/files/img9341.png)
+
+- Отсюда следует, что **сборка** (*assembly*) — это логическая единица, содержащая скомпилированный код для .NET Framework, т.е. это полностью самодостаточный и скорее логический, нежели физический элемент. Это значит, что он может быть сохранен в более чем одном файле (хотя динамические сборки хранятся в памяти, а вовсе не в файлах). Если сборка хранится в более чем одном файле, то должен существовать один главный файл, содержащий точку входа и описывающий остальные файлы.
+
+- Сборки имеют следующие составляющие:
+  + Манифест, который содержит метаданные сборки
+  + Метаданные типов. Используя эти метаданные, сборка определяет местоположение типов в файле приложения, а также места размещения их в памяти
+  + Собственно код приложения на языке MSIL, в который компилируется код C#
+  + Ресурсы
+
+- Ключевым компонентом сборки является ее **манифест**. Если у сборки отсутствует манифест, то заключенный в ней код MSIL выполняться не будет. Манифест может находиться в одном файле с исполняемым кодом сборки, а может размещаться и в отдельном файле.
+
+- Разлиные способы хранения манифеста сборок:
+
+![Manifest](https://i-msdn.sec.s-msft.com/dynimg/IC204950.jpeg)
+
+- Манифест сборки предназначен для следующих задач:
+  + перечисление файлов, составляющих сборку;
+  + сопоставление ссылок на типы и ресурсы сборки с файлами, содержащими объявления и реализации этих типов и ресурсов;
+  + перечисление других сборок, от которых зависит эта сборка;
+  + обеспечение косвенного обращения пользователей сборки к подробностям ее реализации;
+  + предоставление собственного описания сборки;
+
+- И расскзаать как создать DLL и как её заюзать:
+  + Сначала выбрать при создание нового проекта библиотека классов или что-то еще (будет расширение `.dll`);
+  + потом писать код (в основном `static`);
+  + потом создать новый проект или прикрутить к уже существующему через -> Add References;
+  + потом вызвать методы DLL Lib.
+  + PROFIT !!!
+
+### Question 28
+
+- [Рефлексия #1](http://metanit.com/sharp/tutorial/14.1.php)
+
+- [Рефлексия #2](http://metanit.com/sharp/tutorial/14.1.php)
+
+- Рефлексия представляет собой процесс выявления типов во время выполнения приложения. Каждое приложение содержит набор используемых классов, интерфейсов, а также их методов, свойств и прочих кирпичиков, из которых складывается приложение. И рефлексия как раз и позволяет определить все эти составные элементы приложения.
+
+- Получение типа. 
+  + Чтобы управлять типом и получать всю информацию о нем, нам надо сперва получить данный тип. Это можно сделать тремя способами: с помощью ключевого слова `typeof`, с помощью метода `GetType()` класса `Object` и применяя статический метод `Type.GetType()`.
+
+- Получение типа через `typeof`:
+
+```c#
+class Program {
+    static void Main(string[] args) {
+        Type myType = typeof(User);
+         
+        Console.WriteLine(myType.ToString());
+        Console.ReadLine();
+    }
+}
+ 
+public class User {
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public User(string n, int a) {
+        Name = n;
+        Age = a;
+    }
+    public void Display() {
+        Console.WriteLine("Имя: {0}  Возраст: {1}");
+    }
+    public int Payment(int hours, int perhour) {
+        return hours * perhour;
+    }
+}
+```
+
+- Получение типа с помощью метода `GetType` класса `Object`:
+
+```c#
+
+// + код сверху
+
+User user = new User("Tom", 30);
+Type myType = user.GetType();
+```
+
+- Получения типа - статический метод `Type.GetType()`:
+
+```c#
+Type myType = Type.GetType("TestConsole.User", false, true);
+```
+
+- Первый параметр указывает на полное имя класса с пространством имен. В данном случае класс User находится в пространстве имен TestConsole. Второй параметр указывает, будет ли генерироваться исключение, если класс не удастся найти. В данном случае значение false означает, что исключение не будет генерироваться. И третий параметр указывает, надо ли учитывать регистр символов в первом параметре. Значение true означает, что регистр не учитывается.
+
+- [Аттрибуты](http://professorweb.ru/my/csharp/assembly/level2/2_9.php)
+
+- Помни как пример аттрибут `#define <Условие> -> [Conditional("Условие")]`
+
+### Question 29
+
+
+### Question 30
+
+
+### Question 31
+
+
+### Question 32
+
+
+### Question 33
+
+
+### Question 34
