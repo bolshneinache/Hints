@@ -398,31 +398,406 @@ using System;
 namespace ConsoleApplication1
 {
     // Данный класс реализует интерейс IDisposable
-    class FinalizeObject : IDisposable
-    {
+    class FinalizeObject : IDisposable {
         public int id { get; set; }
 
-        public FinalizeObject(int id)
-        {
+        public FinalizeObject(int id) {
             this.id = id;
         }
 
         // Реализуем метод Dispose()
-        public void Dispose()
-        {
+        public void Dispose() {
             Console.WriteLine("Высвобождение объекта!");
+        }
+    }
+
+    class Program {
+        static void Main(string[] args) {
+            FinalizeObject obj = new FinalizeObject(4);
+            obj.Dispose();
+
+            Console.Read();
+        }
+    }
+}
+```
+
+```c#
+FinalizeObject obj = new FinalizeObject(4);
+try {
+    // Выполнение необходимых операций
+}
+finally {
+    obj.Dispose();
+}
+
+// Надо постоянно писать try/finally для того, чтобы точно значть метод Dispose() вызывался.
+// Поэтому используют using
+
+using (FinalizeObject obj = new FinalizeObject(4)) {
+    // Необходимые действия
+}
+```
+
+### Question 15
+
+- [Индексаторы](http://professorweb.ru/my/csharp/charp_theory/level5/5_13.php)
+- [Индексаторы MSDN](https://msdn.microsoft.com/ru-ru/library/6x16t2tx.aspx)
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class MyArr
+    {
+        int[] arr;
+        public int Length;
+
+        public MyArr(int Size)
+        {
+            arr = new int[Size];
+            Length = Size;
+        }
+
+        // Создаем простейший индексатор
+        public int this[int index]
+        {
+            set
+            {
+                arr[index] = value;
+            }
+
+            get
+            {
+                return arr[index];
+            }
         }
     }
 
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            FinalizeObject obj = new FinalizeObject(4);
-            obj.Dispose();
+            MyArr arr1 = new MyArr(Size: 5);
+            Random ran = new Random();
+            
+            // Инициализируем каждый индекс экземпляра класса arr1
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                arr1[i] = ran.Next(1,100);
+                Console.Write("{0}\t", arr1[i]);
+            }
 
-            Console.Read();
-        }\
+            Console.ReadLine();
+        }
     }
 }
 ```
+
+### Question 16 
+
+- [Базовое наследование](http://professorweb.ru/my/csharp/charp_theory/level7/7_1.php)
+- [Конструктор и наследование](http://professorweb.ru/my/csharp/charp_theory/level7/7_3.php)
+
+```c#
+class Sample {
+  public int x,y,z;
+
+  public Sample(int x,int y,int z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;    
+  }
+}
+
+class SampleInheriter : Sample {
+  SampleInheriter(int point, int x,int y,int z) : base (x,y,z) {
+     this.point = point;
+  }
+
+  public void Pointer(ClassA obj) {
+    obj.x *= obj.point;
+    obj.y *= obj.point;
+    obj.z *= obj.point;
+    Console.WriteLine("Новые координаты объекта: {0} {1} {2}", obj.x, obj.y, obj.z);
+  }
+}
+
+class Program {
+  static void Main() {
+      ClassA obj = new ClassA(10, 1, 4, 3);
+      Console.WriteLine("Координаты объекта: {0} {1} {2}", obj.x, 
+        obj.y, obj.z);
+      obj.Pointer(obj);
+
+      Console.ReadLine();
+  }
+}
+```
+
+- Иногда требуется создать базовый класс, в котором определяется лишь самая общая форма для всех его производных классов, а наполнение ее деталями предоставляется каждому из этих классов. В таком классе определяется лишь характер методов, которые должны быть конкретно реализованы в производных классах, а не в самом базовом классе. Подобная ситуация возникает, например, в связи с невозможностью получить содержательную реализацию метода в базовом классе.
+- Абстрактный метод создается с помощью указываемого модификатора типа abstract. У абстрактного метода отсутствует тело, и поэтому он не реализуется в базовом классе. Это означает, что он должен быть переопределен в производном классе, поскольку его вариант из базового класса просто непригоден для использования. 
+Нетрудно догадаться, что абстрактный метод автоматически становится виртуальным и не требует указания модификатора virtual. 
+В действительности совместное использование модификаторов virtual и abstract считается ошибкой. 
+Для определения абстрактного метода служит приведенная ниже общая форма:
+
+`abstract тип имя(список_параметров);`
+
+- [Abastract](http://professorweb.ru/my/csharp/charp_theory/level7/7_7.php)
+
+```c#
+abstract class Foo {
+  abstract public string Show() {}
+}
+
+class Bar : Foo {
+  public override string Show() {
+    //...
+  }
+}
+```
+
+- [Virtual](http://professorweb.ru/my/csharp/charp_theory/level7/7_6.php)
+
+```c#
+class Base {
+  //...
+  public virtual string ShowInfo() {
+    return 'Hello! This is a ShowInfo method from Base class!';
+  }
+}
+
+class Inheriter : Base {
+  //...
+  public override string ShowInfo() {
+    return 'Hello! This is a ShowInfo method from Inheriter class!';
+  }
+}
+```
+
+### Question 17 
+
+- Абстрактный класс смотри выше (да и так понятно).
+
+```c#
+// от sealed class НЕЛЬЗЯ наследоваться - типо singleton
+sealed class SealedClass {
+    public int x;
+    public int y;
+}
+
+class SealedTest2 {
+    static void Main() {
+        SealedClass sc = new SealedClass();
+        sc.x = 110;
+        sc.y = 150;
+        Console.WriteLine("x = {0}, y = {1}", sc.x, sc.y);
+    }
+}
+```
+
+### Question 18
+
+- [Delegates](http://professorweb.ru/my/csharp/charp_theory/level10/10_1.php)
+- [Delegates MSDN](https://msdn.microsoft.com/en-us/library/ms173172.aspx)
+- **Делегат** представляет собой объект, который может ссылаться на метод. Следовательно, когда создается делегат, то в итоге получается объект, содержащий ссылку на метод. Более того, метод можно вызывать по этой ссылке. Иными словами, делегат позволяет вызывать метод, на который он ссылается.
+- По сути, **делегат** — это безопасный в отношении типов объект, указывающий на другой метод (или, возможно, список методов) приложения, который может быть вызван позднее. 
+
+```c#
+delegate int IntOperation(int i, int j);
+
+class Programm {
+  int Add (int x, int x) {
+    return x + y;
+  }
+
+  int Mul (int x, int x) {
+    return x * y;
+  }
+
+  void Main() {
+    // Сконструируем делегат
+    IntOperation intOp1 = new IntOperation(Sum);
+
+    int result = op1(5, 10);
+    Console.WriteLine($"Result of add = {result}");
+
+    // Изменим ссылку делегата на другой метод
+    intOp1 = new IntOperation(Mul);
+    result = op1(5, 10);
+    Console.WriteLine($"Result of mul = {result}");
+  }
+}
+```
+
+```c#
+public delegate void Del(string message);
+
+// Create a method for a delegate.
+public static void DelegateMethod(string message) {
+  Console.WriteLine(message);
+}
+
+// Instantiate the delegate.
+Del handler = DelegateMethod;
+
+// Call the delegate.
+handler("Hello World");
+
+// Send delegate - callback as a parametr for a method
+public void MethodWithCallback(int param1, int param2, Del callback) {
+    callback("The number is: " + (param1 + param2).ToString());
+}
+
+MethodWithCallback(1, 2, handler);
+```
+
+- Exception handling with delegates ???
+
+```c#
+private delegate void StringHandlerDelegate(string s);
+ 
+static void Main() {
+    try {
+        // Add two methods to delegate instance
+        StringHandlerDelegate del = Method1;
+        del += Method2;
+ 
+        // Invoke
+        del("Yooper");
+    }
+    catch (Exception xx) {
+        Console.WriteLine("Exception: {0}", xx.Message);
+    }
+}
+
+// Тут отработает только первый метод и не отработает второй
+// Кажется то 
+ 
+static void Method1(string text) {
+    Console.WriteLine("Method1, {0}", text);
+    throw new Exception("Problem in Method1");
+}
+ 
+static void Method2(string name) {
+    Console.WriteLine("Method2, {0}", name);
+}
+```
+
+
+### Question 19
+
+- [Паттерн Обозреватель](http://metanit.com/sharp/patterns/3.2.php)
+- Паттерн **"Наблюдатель"** (*Observer*) представляет поведенческий шаблон проектирования, который использует отношение "один ко многим". В этом отношении есть один наблюдаемый объект и множество наблюдателей. И при изменении наблюдаемого объекта автоматически происходит оповещение всех наблюдателей.
+- Данный паттерн еще называют **Publisher-Subscriber** (*издатель-подписчик**), поскольку отношения издателя и подписчиков характеризуют действие данного паттерна: подписчики подписываются email-рассылку определенного сайта. Сайт-издатель с помощью email-рассылки уведомляет всех подписчиков о изменениях. А подписчики получают изменения и производят определенные действия: могут зайти на сайт, могут проигнорировать уведомления и т.д.
+- Когда использовать паттерн Наблюдатель?
+  + Когда система состоит из множества классов, объекты которых должны находиться в согласованных состояниях
+  + Когда общая схема взаимодействия объектов предполагает две стороны: одна рассылает сообщения и является главным, другая получает сообщения и реагирует на них. Отделение логики обеих сторон позволяет их рассматривать независимо и использовать отдельно друга от друга.
+  + Когда существует один объект, рассылающий сообщения, и множество подписчиков, которые получают сообщения. При этом точное число подписчиков заранее неизвестно и процессе работы программы может изменяться.
+
+![Observer patter UML design](https://upload.wikimedia.org/wikipedia/commons/8/8a/Observer_UML.png)
+
+- Инфа к диаграмме:
+  + **Observable** — интерфейс, определяющий методы для добавления, удаления и оповещения наблюдателей;
+  + **Observer** — интерфейс, с помощью которого наблюдатель получает оповещение;
+  + **ConcreteObservable** — конкретный класс, который реализует интерфейс **Observable**;
+  + **ConcreteObserver** — конкретный класс, который реализует интерфейс Observer.
+
+![Observer c#](http://metanit.com/sharp/patterns/pics/observer.png)
+
+- Формальное определение паттерна на языке `C#` может выглядеть следующим образом:
+
+```c#
+interface IObservable {
+    void AddObserver(IObserver o);
+    void RemoveObserver(IObserver o);
+    void NotifyObservers();
+}
+class ConcreteObservable : IObservable {
+    private List<IObserver> observers;
+    public void AddObserver(IObserver o) {
+        observers.Add(o);
+    }
+ 
+    public void RemoveObserver(IObserver o) {
+        observers.Remove(o);
+    }
+ 
+    public void NotifyObservers() {
+        foreach (IObserver observer in observers)
+            observer.Update();
+    }
+}
+ 
+interface IObserver {
+    void Update();
+}
+class ConcreteObserver :IObserver {
+    public void Update() {}
+}
+```
+
+### Question 20
+
+- [События](http://professorweb.ru/my/csharp/charp_theory/level10/10_7.php)
+- [События - Habr](https://habrahabr.ru/post/213809/)
+
+```c#
+using System;
+
+namespace ConsoleApplication1 {
+    delegate void UI ();
+
+    class MyEvent {
+        // Объявляем событие
+        public event UI UserEvent;
+
+        // Используем метод для запуска события
+        public void OnUserEvent() {
+            UserEvent();
+        }
+    }
+
+    class UserInfo {
+        string uiName, uiFamily;
+        int uiAge;
+
+        public UserInfo(string Name, string Family, int Age) {
+            this.Name = Name;
+            this.Family = Family;
+            this.Age = Age;
+        }
+
+        public string Name { set { uiName = value; } get { return uiName; } }
+        public string Family { set { uiFamily = value; } get { return uiFamily; } }
+        public int Age { set { uiAge = value; } get { return uiAge; } }
+
+        // Обработчик события
+        public void UserInfoHandler() {
+            Console.WriteLine("Событие вызвано!\n");
+            Console.WriteLine("Имя: {0}\nФамилия: {1}\nВозраст: {2}",Name,Family,Age);
+        }
+    }
+
+    class Program{
+        static void Main() {
+            MyEvent evt = new MyEvent();
+            UserInfo user1 = new UserInfo(Name: "Alex", Family: "Erohin", Age: 26);
+
+            // Добавляем обработчик события
+            evt.UserEvent += user1.UserInfoHandler;
+           
+            // Запустим событие
+            evt.OnUserEvent();
+
+            Console.ReadLine();
+        }
+    }
+}
+```
+
+### Question 21
