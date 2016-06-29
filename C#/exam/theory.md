@@ -272,6 +272,7 @@ class Sample {
   ~Sample() {}
 }
 ```
+
 ### Question 10
 
 - ???
@@ -335,8 +336,93 @@ foreach(point p in array) {
 }
 array[0].x = 5;
 ```
-### Question 13
+
+### Question 12
+
+- [String](http://professorweb.ru/my/csharp/charp_theory/level4/4_7.php)
 
 ```c#
-// StringBuilder
+// Chars
+char a = 'a';
+char[] arrOfChars = {'a', 'b', 'c'};
+
+// String
+string foo = 'qwerts';
+string[] arrOfStrings = {'qwer', 'asddd', 'qwsaz'};
+
+// Also
+char[] chararray = {'e', 'x', 'a', 'm', 'p', 'l', 'e'};
+string str = new string(chararray);
+```
+- [Форматирование строк](https://msdn.microsoft.com/ru-ru/library/system.string.format(v=vs.110).aspx)
+
+- [String Builder](http://professorweb.ru/my/csharp/charp_theory/level4/4_8.php)
+
+```c#
+StringBuilder hello = new StringBuilder("Hello FUKKBOYS LLC!",120);
+hello.AppendFormat("Welcome to the JUNGLE!");
+```
+
+### Question 13
+
+- [Interfaces](http://professorweb.ru/my/csharp/charp_theory/level9/9_1.php)
+
+```c#
+public interface CalculationOperation {
+  int Sum();
+  int Mul();
+}
+
+class Sample : CalculationOperation {
+  // ...
+
+  public virtual Sum() {
+    // ...
+  }
+
+  public virtual Sum() {
+    // ...
+  }
+}
+```
+
+- [Default .Net Interfaces](http://www.intuit.ru/studies/courses/486/342/lecture/8245?page=2)
+
+### Question 14
+
+- [IDisposoble](http://professorweb.ru/my/csharp/charp_theory/level13/13_6.php)
+
+```c#
+using System;
+
+namespace ConsoleApplication1
+{
+    // Данный класс реализует интерейс IDisposable
+    class FinalizeObject : IDisposable
+    {
+        public int id { get; set; }
+
+        public FinalizeObject(int id)
+        {
+            this.id = id;
+        }
+
+        // Реализуем метод Dispose()
+        public void Dispose()
+        {
+            Console.WriteLine("Высвобождение объекта!");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            FinalizeObject obj = new FinalizeObject(4);
+            obj.Dispose();
+
+            Console.Read();
+        }\
+    }
+}
 ```
