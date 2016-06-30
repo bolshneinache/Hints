@@ -225,6 +225,22 @@
 
 - 1 Part
 
+```c#
+public static Boolean isPrime(int number) {
+    if (number == 1) return false;
+    if (number == 2) return true;
+
+    if (number % 2 == 0) return false; //Even number     
+
+    for (int i = 3; i < number; i += 2)  {
+       if (number % i == 0) return false;
+    }
+
+    return true;
+
+}
+```
+
   ```c#
   bool prost = true;
 
@@ -1130,3 +1146,54 @@
     }
   }
   ```
+### Task #22
+
+- Part 1
+- Part 2
+
+### Task #23
+
+- Part 1
+- Part 2
+
+### Task #24
+
+- Part 1
+- Part 2
+
+### Task #25
+
+- Part 1
+- Part 2
+
+### Task #26
+
+- Part 1
+- Part 2
+
+### Task #27
+
+- Part 1
+- Part 2
+
+### Task #28
+
+
+- Part 1
+- Part 2
+
+### Task #29
+
+- Part 1
+- Part 2
+
+### Task #30
+
+- Part 1
+- Part 2
+
+### Task #31
+
+
+
+
