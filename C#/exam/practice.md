@@ -1146,54 +1146,624 @@ public static Boolean isPrime(int number) {
     }
   }
   ```
+
 ### Task #22
 
 - Part 1
+
+  ```c#
+  int number = 0;
+  while (true) {
+   Console.Write("Введите число: ");
+   if (int.TryParse(Console.ReadLine(), out number))
+    break;
+   else
+    Console.WriteLine("Неверное число.");
+  }
+
+  string numberStr = number.ToString();
+  Console.WriteLine(numberStr == new string(numberStr.ToCharArray().Reverse().ToArray()) ? "Палиндром" : "Не палиндром.");
+  Console.ReadKey(true);
+  ```
+
+  ```c#
+  int number = 0;
+  while (true) {
+   Console.Write("Введите число: ");
+   if (int.TryParse(Console.ReadLine(), out number))
+    break;
+   else
+    Console.WriteLine("Неверное число.");
+  }
+  int oldValue = number;
+  int newValue = 0;
+  while (number > 0) {
+   int dig = number % 10;
+   newValue = newValue * 10 + dig;
+   number = number / 10;
+  }
+  if (newValue == oldValue)
+   Console.WriteLine("Число является палиндромом");
+  else
+   Console.WriteLine("Число не является палиндромом");
+  Console.Write("Нажмите любую клавишу...");
+  Console.ReadKey();
+  ```
+
 - Part 2
+
+  ```c#
+  class BaseClass {
+  public virtual void VirtualMethod() {
+    Console.WriteLine("Не переопределённый метод");
+   }
+  }
+
+  class InheritorClass : BaseClass {
+    public override void VirtualMethod() {
+        Console.WriteLine("Переопределённый метод");
+    }
+  }
+  ```
 
 ### Task #23
 
 - Part 1
+
+  ```c#
+  class Program {
+   public static bool IsPolindrom(int number) {
+    int oldValue = number;
+    int newValue = 0;
+    while (number > 0) {
+     int dig = number % 10;
+     newValue = newValue * 10 + dig;
+     number = number / 10;
+    }
+    if (newValue == oldValue)
+     return true;
+    return false;
+   }
+
+   static void Main(string[] args) {
+    int number;
+    while (true) {
+     Console.Write("Введите число: ");
+     if (int.TryParse(Console.ReadLine(), out number))
+      break;
+     else
+      Console.WriteLine("Неверное число.");
+    }
+
+    for (int i = 11; i < number; i++) {
+     if (IsPolindrom(i * i))
+      Console.WriteLine(i);
+    }
+
+    Console.ReadLine();
+   }
+  }
+  ```
+
 - Part 2
+
+  ```c#
+  class BaseClass {
+    private int Property;
+    public virtual int _property {
+      get { return _property; }
+      set { _property = value; }
+    }
+  }
+
+  class InheritorClass : BaseClass {
+    public override int _property {
+      get { return base._property - 1; }
+      set { base._property = value; }
+    }
+  }
+  ```
 
 ### Task #24
 
 - Part 1
+
+  ```c#
+  class Program {
+   public static bool IsPolindrom(int number) {
+    int oldValue = number;
+    int newValue = 0;
+    while (number > 0) {
+     int dig = number % 10;
+     newValue = newValue * 10 + dig;
+     number = number / 10;
+    }
+    if (newValue == oldValue)
+     return true;
+    return false;
+   }
+
+   static void Main(string[] args) {
+    int number;
+    while (true) {
+     Console.Write("Введите число: ");
+     if (int.TryParse(Console.ReadLine(), out number))
+      break;
+     else
+      Console.WriteLine("Неверное число.");
+    }
+
+    for (int i = 11; i < number; i++) {
+     if (IsPolindrom(i) && IsPolindrom(i * i))
+      Console.WriteLine(i);
+    }
+
+    Console.ReadLine();
+   }
+  }
+  ```
+
 - Part 2
+
+  ```c#
+  public interface IExample {
+    int Property { get; set; }
+    void Method();
+  }
+
+  class ExampleClass: IExample {
+    private int _property;
+
+    public int Property {
+      get { return _property; }
+      set { _property = value; }
+    }
+
+    public void Method() {}
+  }
+  ```
 
 ### Task #25
 
 - Part 1
+
+  ```c#
+  class Program {
+   public static bool IsPolindrom(ulong number) {
+    ulong oldValue = number;
+    ulong newValue = 0;
+    while (number > 0) {
+     ulong dig = number % 10;
+     newValue = newValue * 10 + dig;
+     number = number / 10;
+    }
+    if (newValue == oldValue)
+     return true;
+    return false;
+   }
+
+   static void Main(string[] args) {
+    ulong number;
+    while (true) {
+     Console.Write("Введите число: ");
+     if (ulong.TryParse(Console.ReadLine(), out number))
+      break;
+     else
+      Console.WriteLine("Неверное число.");
+    }
+
+    for (ulong i = 7; i < number; i++) // с 7, так как первое подходящее число - именно 7
+    {
+     if (IsPolindrom(i * i * i) || IsPolindrom(i * i * i * i) || IsPolindrom(i * i * i * i * i))
+      Console.WriteLine(i);
+    }
+
+    Console.ReadLine();
+   }
+  }
+  ```
+
 - Part 2
+
+  ```c#
+  class FinalizeObject : IDisposable {
+    public int id { get; set; }
+    public FinalizeObject(int id) {
+      this.id = id;
+    }
+    public void Dispose() {
+        Console.WriteLine("Высвобождение объекта!");
+    }
+  }
+
+  class Program{
+    static void Main(string[] args) {
+      FinalizeObject obj = new FinalizeObject(4);
+      obj.Dispose();
+      Console.ReadKey();
+    }
+  }
+  ```
 
 ### Task #26
 
 - Part 1
+
+  ```c#
+  class Program {
+   static int classicGCD(int a, int b) // для 2 чисел
+    {
+     while (b != 0) {
+      int temp = b;
+      b = a % b;
+      a = temp;
+     }
+     return a;
+    }
+
+   static int multiGCD(params int[] n) // для всех чисел в массиве (в нашем случае будет 4)
+    {
+     if (n.Length == 0) return 0;
+     int i, gcd = n[0];
+     for (i = 0; i < n.Length - 1; i++)
+      gcd = classicGCD(gcd, n[i + 1]);
+     return gcd;
+    }
+
+   static void Main(string[] args) {
+    int n1, n2, n3, n4;
+
+    Console.Write("Введите 1 число: ");
+    int.TryParse(Console.ReadLine(), out n1);
+    Console.Write("Введите 2 число: ");
+    int.TryParse(Console.ReadLine(), out n2);
+    Console.Write("Введите 3 число: ");
+    int.TryParse(Console.ReadLine(), out n3);
+    Console.Write("Введите 4 число: ");
+    int.TryParse(Console.ReadLine(), out n4);
+
+
+    int[] mas = new int[] {
+     n1,
+     n2,
+     n3,
+     n4
+    };
+    Console.WriteLine("НОД: " + multiGCD(mas));
+
+    Console.ReadKey();
+   }
+  }
+  ```
+
 - Part 2
+
+  ```c#
+  delegate void MyEventHandler();
+
+  class MyEvent
+  {
+      public event MyEventHandler SomeEvent;
+      void OnSomeEvent()
+      {
+          if (SomeEvent != null) SomeEvent();
+      }
+      public void MyMethod()
+      {
+          int X;
+          for (X = 10; X <= 20; X++)
+              if (X == 15) OnSomeEvent();
+      }
+
+  }
+  class Program
+  {
+      static void Handler()
+      {
+          Console.WriteLine("X==15");
+      }
+      static void Main(string[] args)
+      {
+          MyEvent me = new MyEvent();
+          me.SomeEvent += Handler;
+          me.MyMethod();
+          Console.Read();
+      }
+  }
+  ```
 
 ### Task #27
 
 - Part 1
+
+  ```c#
+  class Program {
+   static int classicGCD(int a, int b) // для 2 чисел
+    {
+     while (b != 0) {
+      int temp = b;
+      b = a % b;
+      a = temp;
+     }
+     return a;
+    }
+
+   static int multiGCD(params int[] n) // для всех чисел в массиве (в нашем случае будет 4)
+    {
+     if (n.Length == 0) return 0;
+     int i, gcd = n[0];
+     for (i = 0; i < n.Length - 1; i++)
+      gcd = classicGCD(gcd, n[i + 1]);
+     return gcd;
+    }
+
+   static void Main(string[] args) {
+    int n1, n2, n3, n4;
+
+    Console.Write("Введите 1 число: ");
+    int.TryParse(Console.ReadLine(), out n1);
+    Console.Write("Введите 2 число: ");
+    int.TryParse(Console.ReadLine(), out n2);
+    Console.Write("Введите 3 число: ");
+    int.TryParse(Console.ReadLine(), out n3);
+    Console.Write("Введите 4 число: ");
+    int.TryParse(Console.ReadLine(), out n4);
+
+
+    int[] mas = new int[] {
+     n1,
+     n2,
+     n3,
+     n4
+    };
+    Console.WriteLine("НОД: " + multiGCD(mas));
+
+    Console.ReadKey();
+   }
+  }
+  ```
+
 - Part 2
+
+  ```c#
+  public class Employee {
+   private string name;
+   public string Name {
+    get {
+     return name;
+    }
+    set {
+     name = value;
+     if (name == null) {
+      throw new System.ArgumentException("Parameter cannot be null", "name");
+     }
+    }
+   }
+  }
+
+  class Test {
+   static void Main() {
+    Employee m1 = new Employee();
+
+    m1.Name = "Alex";
+    System.Console.WriteLine("Name: {0}", m1.Name);
+
+    Console.ReadKey();
+
+   }
+  }
+  ```
 
 ### Task #28
 
 
 - Part 1
+
+  ```c#
+  Console.WriteLine("Input word");
+  string s = Console.ReadLine();
+  ArrayList objectList = new ArrayList();
+  for (int i = 0; i < s.Length; ++i) {
+   objectList.Add(s[i]);
+  }
+  foreach(char o in objectList) {
+   Console.WriteLine(o);
+  }
+  Console.ReadKey();
+  ```
+
 - Part 2
+
+  ```c#
+  class TimePeriod {
+   private double seconds;
+
+   public double Hours {
+    get {
+     return seconds / 3600;
+    }
+    set {
+     seconds = value * 3600;
+    }
+   }
+
+   public double Child {
+    get;
+    set;
+   }
+  }
+
+
+  class Program {
+   static void Main() {
+    TimePeriod t = new TimePeriod();
+    t.Hours = 3600;
+    System.Console.WriteLine("Seconds in hours: " + t.Hours);
+
+    TimePeriod m = new TimePeriod();
+    m.Child = 60;
+    System.Console.WriteLine("Seconds in minute: " + m.Child);
+
+    Console.ReadKey();
+   }
+  ```
 
 ### Task #29
 
 - Part 1
+
+  ```c#
+  class Program {
+   static void Main(string[] args) {
+    int a = 22;
+    int b = 11;
+
+    int Nod = GetNod(a, b);
+    Console.WriteLine(Nod);
+    Console.ReadKey();
+
+   }
+
+   static int GetNod(int value1, int value2) {
+    int b = 1;
+    int q = value1 < value2 ? value1 : value2;
+    int r = 0;
+    int a = value1 < value2 ? value2 : value1;
+    do {
+     while (a - (b * q) >= q) {
+      b++;
+     }
+     r = a - (b * q);
+     a = q;
+     q = r;
+    }
+    while (r > 0);
+    return a;
+   }
+  }
+  ```
+
 - Part 2
+
+  ```c#
+  class MyClass
+    {
+        public int x, y, z;
+
+        // Конструктор базового класса
+        public MyClass(int x, int y, int z)
+        {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+    }
+
+    class ClassA : MyClass
+    {
+        int point;
+
+        // Конструктор производного класса
+        public ClassA(int point, int x, int y, int z)
+            : base(x, y, z)
+        {
+            this.point = point;
+        }
+
+        public void Pointer(ClassA obj)
+        {
+            obj.x *= obj.point;
+            obj.y *= obj.point;
+            obj.z *= obj.point;
+            Console.WriteLine("Новые координаты объекта: {0} {1} {2}", obj.x, obj.y, obj.z);
+        }
+    }
+  ```
 
 ### Task #30
 
 - Part 1
+
+  ```c#
+  class Sample {
+
+   public static void Main() {
+    Console.WriteLine("N is : ");
+    int n = int.Parse(Console.ReadLine());
+    int a = 1;
+    int b = 0;
+    int sumA = 0;
+    int sumB = 1;
+    while (a < n + 1) {
+     while (b < a) {
+      b = b + 1;
+      sumB = sumB * b;
+     }
+     a = a + 1;
+     sumA = sumA + sumB;
+    }
+    Console.WriteLine(sumA);
+    Console.ReadKey();
+   }
+  }
+  ```
+
 - Part 2
+
+  ```c#
+  abstract class Human
+  {
+      public string Name { get; set; }
+      public abstract void sayHello();
+  }
+
+  class Russian : Human
+  {
+      public Russian(string name)
+      {
+          Name = name;
+      }
+
+      public override void sayHello()
+      {
+        Console.WriteLine(Name + ": Привет!");
+      }
+  }
+  ```
 
 ### Task #31
 
+- Part 1
+
+  ```c#
+  class Program
+    {
+        static void Main(string[] args)
+        {
+            string str = Console.ReadLine();
+            Console.WriteLine(str);
+            string str1 = System.Text.RegularExpressions.Regex.Replace(str, @"\s+", " ");
+            Console.WriteLine(str1);
+            Console.ReadKey();
+        }
+    }
+
+  ```
+
+- Part 2
+
+ ```c#
+ class Font
+    {
+        public virtual string FontInfo(Font obj) { }
+    }
+
+    class ColorFont : Font
+    {
+        public override string FontInfo(Font obj) {}
+    }
+
+ ```
 
 
 
